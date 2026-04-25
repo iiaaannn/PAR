@@ -4,6 +4,7 @@ Antes de todo me gustaría aclarar que Python sujeta la programación orientada 
 - [Métodos de POO](#métodos-de-poo)
   - [Encapsulación](#encapsulación)
   - [Herencia](#herencia)
+    - [Herencia múltiple](#herencia-múltiple)
 
 
 # Clases y objetos
@@ -36,9 +37,9 @@ Como se puede observar en este ejemplo, la clase "coche" sirve como molde (es de
 
 La encapsulación nos permite definir niveles de acceso y/o visibilidad para atributos y métodos:
 
-* <font color="F54927">**private**</font> : sólo accesibles por la propia clase
-* <font color="F54927">**protected**</font> : sólo accesibles por la propia clase y las clases que deriven de ella (herencia)
-* <font color="F54927">**public**</font> : accesibles a todas las clases
+* :red_circle: **private** : sólo accesibles por la propia clase
+* :yellow_circle: **protected** : sólo accesibles por la propia clase y las clases que deriven de ella (herencia)
+* :green_circle: **public** : accesibles a todas las clases
 
 ```py
 class Cuenta:
@@ -68,7 +69,7 @@ cartera.depositar(100) (BIEN)
 
 Existe Agregación y herencia : 
 
-* <font color="BDFFD7">**Agregación**</font> : los objetos de la clase A tienen objetos de la clase B
+* :point_right: **Agregación** : los objetos de la clase A tienen objetos de la clase B
 
 ```py
 class Motor:
@@ -81,7 +82,7 @@ class Coche:
 
 como podemos ver, cada Coche tiene un motor, pero cada Coche no es un motor como tal.
 
-* <font color="BDFFD7">**Herencia**</font> : en la herencia, la clase B hereda/se deriva de la clase A
+* :point_right: **Herencia** : en la herencia, la clase B hereda/se deriva de la clase A
 
 ```py
 class Animal:

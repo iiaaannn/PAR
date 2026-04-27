@@ -2,6 +2,7 @@
 
 Antes de todo me gustaría aclarar que Python sujeta la programación orientada a objetos con pinzas. ¿A qué me refiero con esto? pues, si bien Python nos puede servir para entender las bases de este paradigma, si indagamos un poco más a fondo, vemos que se desmonta por todos lados (por ejemplo en la encapsulación, lenguajes como Java no darían problema alguno, pero en Python podemos llegar a "hackear" la encapsulación)
 
+- [Orientación a Objetos](#orientación-a-objetos)
 - [Clases y objetos](#clases-y-objetos)
 - [Métodos de POO](#métodos-de-poo)
   - [Encapsulación](#encapsulación)

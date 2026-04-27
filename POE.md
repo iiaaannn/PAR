@@ -1,5 +1,14 @@
 # Orientación a eventos
 
+- [Orientación a eventos](#orientación-a-eventos)
+- [Arquitectura de orientación a eventos](#arquitectura-de-orientación-a-eventos)
+- [Paso de mensajes](#paso-de-mensajes)
+- [Manejadores de eventos](#manejadores-de-eventos)
+- [Técnicas para Programación Orientada a Eventos (P.O.E)](#técnicas-para-programación-orientada-a-eventos-poe)
+  - [Callbacks](#callbacks)
+  - [Orientación a Objetos](#orientación-a-objetos)
+
+
 En este paradigma, el flujo del programa viene determinado por ***eventos*** (acción del usuario, activación de sensores...)
 
 Básicamente son un conjunto de bloques de código que son invocados al producirse un evento

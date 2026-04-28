@@ -78,6 +78,10 @@ cartera.depositar(100) (BIEN)
 ```
 ## Herencia
 
+![](img/herencia.png)
+
+Se dice que B se deriva/se hereda de A
+
 Existe Agregación y herencia : 
 
 * :point_right: **Agregación** : los objetos de la clase A tienen objetos de la clase B
@@ -164,7 +168,10 @@ C deriva primero de A y luego de B, por lo tanto si ejecutamos el método saluda
 
 ### Sistemas de tipado
 
-Un sistema de tipado son el conjunto de reglas que definen qué es cada cosa y qué podemos hacer con ella.
+Un sistema de tipado son el conjunto de reglas que definen qué es cada cosa y qué podemos hacer con ella. Un sistema ***fuertemente tipado*** (Java, C++...) es aquel que pone reglas muy estrictas sobre cómo se definen los datos : 
+`int resultado = 5 + "10"; // error`
+En cambio, un lenguaje de ***tipado débil*** (javascript) es aquel que no pone normas tan estrictas : 
+`let resultado = 5 + "10"; // "510"`
 
 * **jerarquía de subtipos** : la herencia permite crear clases a partir de otras ya existentes. Un ejemplo sería la clase Vehículo (**Clase Base (Padre)**) y otras derivadas serían el Coche o la Moto (**Clase Derivada (Hijo)**)
 
@@ -178,25 +185,29 @@ Un sistema de tipado son el conjunto de reglas que definen qué es cada cosa y q
 
 ## Polimorfismo
 
-El polimorfismo permite que distintos objetos respondan al mismo método pero cada uno a su manera :
+El polimorfismo es la capacidad de un objeto para asumir diferentes formas.
 
-```py
-class Perro:
-    def hablar(self):
-        return "Guau"
+```java
+class EstMeteo {
+    void printClima() {
+        System.out.println(calcularClima());
+    }
+    String calcularClima() {
+        meteocyl("Valladolid");
+    }
+}
 
-class Gato:
-    def hablar(self):
-        return "Miau"
+class EstMeteoPal extends EstMeto { // EstMeteoPal hereda de EstMeteo
+    @Override // esto sirve para anular el método calcularClima() que hereda de EstMeteo y redefinirlo en esta clase heredada
+    String calcularClima() {
+        meteocyl("Palencia");
+    }
+}
 
-perro = Perro()
-gato = Gato()
-
-perro.hablar() # 'Guau'
-gato.hablar() # 'Miau'
+EstMeteo est = new EstMeteoPal();
 ```
 
-Como se puede observar, tanto el objeto perro como gato, ambos hacen referencia al mismo nombre del método, pero se comportan de manera diferente.
+El polimorfismo aparece en la línea `EstMeteo est = new EstMeteoPal();`. Esta línea quiere decir que todo lo que hace un padre, lo pueden hacer sus hijos (pues al ser una clase heredada, puede usar los métodos de la clase padre y además los que se definan/redefinan en la clase hijo)
 
 ## Ligadura dinámica
 

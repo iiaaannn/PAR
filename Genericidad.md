@@ -157,6 +157,7 @@ Vamos a entender la covarianza y la contravarianza de una forma muy simple :
 Imaginemos que tenemos una caja de manzanas con la etiqueta "caja de frutas" : 
 
 &#9989; **Acceder (sacar)** : esto podemos hacerlo porque si metemos la mano en una caja con la etiqueta "fruta", podemos estar seguros que lo que saquemos va a ser una manzana, pues recordemos que la caja, aunque tenga la etiqueta de "caja de frutas", es una caja de manzanas.
+
 &#10060; **Añadir** : esto NO podemos hacerlo porque si alguien lee la etiqueta "fruta", puede intentar introducir una naranja, pero hay que recordar, ¡que la caja es sólo de manzanas!
 
 ```java
@@ -172,6 +173,7 @@ frutas.push(new Naranja()); // INCORRECTO (hay manzanas, y si alguien intenta me
 Ahora imaginemos que tenemos una caja de comida y la usamos para meter manzanas :
 
 &#10060; **Acceder (sacar)** : esto NO podemos hacerlo porque si metemos la mano esperando sacar una manzana, podemos sacar perfectamente un chuletón, porque recordemos, la caja era de comida...
+
 &#9989; **Añadir** : esto podemos hacerlo porque en una caja de comida perfectamente podemos añadir una manzana.
 
 ```java

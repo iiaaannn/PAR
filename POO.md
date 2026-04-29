@@ -300,7 +300,7 @@ El ***ámbito local*** de un método está formado por :
 
 * :point_right: **abstractos** : métodos para los que la clase no proporciona implementación (lo implementan las interfaces) (`abstract` en Java/C#, 0 en C++)
  
-* :point_right: **estáticos** : métodos que puedes usar sin necesidad de crear una instancia de la clase (objeto) y llamar al método desde ese objeto (`static` en Java/C#/C++, `@static_method` en Python) No pueden acceder a atributos ni invocar métodos NO estáticos. Para invocarlos usamos la sintaxis `clase.metodo(params)`. Java, C++, C#, Python permiten atributos estáticos (que pueden accederse mediante métodos estáticos)
+* :point_right: **estáticos** : métodos que puedes usar sin necesidad de crear una instancia de la clase (objeto) y llamar al método desde ese objeto (`static` en Java/C#/C++, `@static_method` en Python) No pueden acceder a atributos ni invocar métodos NO estáticos. Para invocarlos usamos la sintaxis `clase.metodo(params)`. Java, C++, C#, Python permiten atributos estáticos (que pueden accederse mediante métodos estáticos) (también funcionan para atributos)
 
 * :point_right: **constructores/destructores** : se encargan de inicializar y liberar recursos del objeto respectivamente
 

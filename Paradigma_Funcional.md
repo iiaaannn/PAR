@@ -11,6 +11,10 @@
       - [Tipos compuestos](#tipos-compuestos)
     - [Tipos funcionales](#tipos-funcionales)
     - [Declaraciones de tipos](#declaraciones-de-tipos)
+  - [Definición de funciones](#definición-de-funciones)
+    - [Evaluación directa](#evaluación-directa)
+    - [Evaluación diferida/perezosa](#evaluación-diferidaperezosa)
+    - [Aplicación de funciones](#aplicación-de-funciones)
 
 # Características
 
@@ -89,3 +93,47 @@ edad = 18
 Alguna cosilla importante : 
 
 - `raiz :: Double -> Double` : esto indica que el identificador raíz hace referencia a una función que recibe un valor real (Double) y devuelve un valor real.
+
+## Definición de funciones
+
+En haskell, una **función** es la expresión por la que se puede sustituir una <u>aplicación</u> (una aplicación es la llamada de la función) de la función a un parámetro al evaluar una expresión en la que aparezca. 
+
+En resumidas cuentas, si tenemos : 
+
+```hs
+triplicar x = x + x + x
+10 + triplicar 2
+```
+
+cuando haskell ve `triplicar 2`, lo que hace no es evaluar esa expresión, sino sustiturilo por su definición (`2 + 2 + 2`), por lo tanto quedaría así : `10 + 2 + 2 + 2`
+
+Existen dos tipos de formas de evaluar una función : 
+
+### Evaluación directa
+
+```hs
+sumarDiez :: Int -> Int
+sumarDiez x = x + 10
+```
+
+Al hacer `sumarDiez(2 + 3)` primero resuelve lo que hay dentro del paréntesis `2 + 3 = 5` y después llama a la función con el 5 $\rightarrow$ `sumarDiez 5`
+
+### Evaluación diferida/perezosa
+
+Para el mismo ejemplo de antes, lo que hace el ordenador es llamar a la función directamente : `sumarDiez (2 + 3) = (2 + 3) + 10`, y ahora que tiene la expresión completa, la evalúa (lo suma todo) $\rightarrow$ `(2 + 3) + 10 = 5 + 10 = 15`
+
+Existen expresiones (***Formas normales***) que <u>NO</u> se evalúan. Estas son datos y funciones constructoras.
+
+### Aplicación de funciones
+
+En haskell, la llamada a una función se hace mediante mera **yuxtaposición** (pasando los parámetros uno junto a otro) : 
+
+```hs
+max :: Int -> Int -> Int
+max x y = if x > y then x else y
+
+max 3 5 -- BIEN
+max(3, 5) -- MAL (se entiende que se le pasa una tupla a la función y eso está mal)
+```
+
+Llamar a una función tiene **precedencia máxima** (es decir, es más importante que cualquier otra cosa)

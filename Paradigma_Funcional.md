@@ -16,6 +16,9 @@
     - [Evaluación diferida/perezosa](#evaluación-diferidaperezosa)
     - [Aplicación de funciones](#aplicación-de-funciones)
   - [Secciones](#secciones)
+  - [Concordancia de patrones (Pattern Matching)](#concordancia-de-patrones-pattern-matching)
+  - [Subexpresiones](#subexpresiones)
+  - [Operadores y funciones](#operadores-y-funciones)
 
 # Características
 
@@ -172,3 +175,58 @@ Por lo tanto, con operadores podemos hacer lo mismo. Esto es lo que se denomina 
 (<3) n -- n < 3
 ...
 ```
+
+## Concordancia de patrones (Pattern Matching)
+
+Esta técnica consiste en que en vez de escribir funciones usando una única definición gigante como esta :
+
+```hs
+fact n = if n > 1 then 1 else n * fact(n-1)
+```
+
+se usan varias definiciones y en vez de indicando parámetros, ***patrones*** :
+
+```hs
+fact 0 = 1
+fact n = n*fact(n-1)
+```
+
+## Subexpresiones
+
+La cláusula `where` permite que el código sea más fácil de leer y evita repetir cosas. 
+
+Imagina que quieres sacar las dos soluciones de una ecuación de segundo grado : 
+
+```hs
+eq2grad a b c = ( (-b + sqrt (b^2 - 4*a*c)) / (2*a) , 
+                  (-b - sqrt (b^2 - 4*a*c)) / (2*a) )
+```
+
+El problema de esto es que haskell tiene que calcular la raíz cuadrada dos veces seguidas (y es una pérdida de tiempo)
+
+```hs
+eq2grad a b c = ( (-b + disc) / den , 
+                  (-b - disc) / den )
+  where
+    disc = sqrt (b^2 - 4*a*c)
+    den  = 2 * a
+```
+
+como se observa en el código, `where` permite definir una única vez la operación del discriminante, y poder usarla tantas veces como queramos.
+
+Además, nos permite definir variables y hacerlas depender de otras definidas anteriormente.
+
+## Operadores y funciones
+
+- `+ - *` $\rightarrow$ aplica la operación aritmética correspondiente
+- `a ^ b` $\rightarrow$ aplica la operación de potencia. Se usa para elevar a números enteros ($2^2$, $2^3$, ...)
+- `a ** b` $\rightarrow$ aplica la operación de potencia. Se usa para elevar a números reales ($2^{\frac{1}{3}}$, $2^{\frac{1}{2}}$, ...)
+- `div mod` $\rightarrow$ devuelven el cociente y el resto de una división respectivamente
+- `/` $\rightarrow$ aplica la división entre números reales ($\frac{2.5}{3.2}$, $\frac{1}{5}$, ...)
+- `&& || not` $\rightarrow$ aplican la operación de AND, OR, NOT booleano respectivamente
+- `== /=` $\rightarrow$ es como el `== !=` de otros lenguajes (igual/distinto)
+- `< <= > >=` $\rightarrow$ devuelve True si es menor, menor o igual, mayor, mayor o igual respectivamente.
+- `f . g` $\rightarrow$ aplica la composición de funciones ($f(g(x))$)
+- `f $ g` $\rightarrow$ aplica g y lo que salga se le aplica a f
+- `pred, succ` $\rightarrow$ devuelve el elemento anterior/siguiente respectivamente (`succ 5` $\rightarrow$ `6`, `pred 6` $\rightarrow$ `5`)
+- `show` $\rightarrow$ traduce a String el valor (`show 5` $\rightarrow$ `"5"`, `show True` $\rightarrow$ `"True"`)

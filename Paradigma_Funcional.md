@@ -15,6 +15,7 @@
     - [Evaluación directa](#evaluación-directa)
     - [Evaluación diferida/perezosa](#evaluación-diferidaperezosa)
     - [Aplicación de funciones](#aplicación-de-funciones)
+  - [Secciones](#secciones)
 
 # Características
 
@@ -137,3 +138,37 @@ max(3, 5) -- MAL (se entiende que se le pasa una tupla a la función y eso está
 ```
 
 Llamar a una función tiene **precedencia máxima** (es decir, es más importante que cualquier otra cosa)
+
+En Haskell no existe distinción entre operadores y funciones, es decir : `a + b` $\equiv$ `suma a b`
+
+Todo operador puede operar como una función, basta con escribirlo entre paréntesis $\rightarrow$ `(+) a b`
+
+Y además, toda función <u>binaria</u> puede funcionar como un operador, escribiéndolo entre acentos $\rightarrow$ `3 'max' 7`
+
+## Secciones
+
+Como hemos visto en las funciones, no aceptan realmente dos parámetros, aceptan uno y devuelven una función con ese parámetro para después usar el otro.
+
+```hs
+max :: Int -> (Int -> Int) -- paréntesis implícitos
+max x y = if x > y then x else y
+```
+
+```hs
+mayorQue10 :: Int -> Int
+mayorQue10 y = max 10
+```
+
+La función `mayorQue10` toma la función predefinida `max`, y devuelve el propio número si es mayor que 10 o 10 si es menor que 10.
+
+Por lo tanto, con operadores podemos hacer lo mismo. Esto es lo que se denomina una ***sección*** :
+
+```hs
+(+1) n -- n + 1
+(+(-1)) n -- n - 1
+(*2) n -- n * 2
+(1/) n -- 1 / n
+(^2) n -- n ^ 2
+(<3) n -- n < 3
+...
+```

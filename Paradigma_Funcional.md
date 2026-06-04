@@ -21,6 +21,11 @@
   - [Operadores y funciones](#operadores-y-funciones)
   - [Genericidad restringida](#genericidad-restringida)
 - [Sistemas de tipado](#sistemas-de-tipado)
+  - [Tipado algebraico](#tipado-algebraico)
+  - [Tipos recursivos y paramétricos](#tipos-recursivos-y-paramétricos)
+    - [Tipos paramétricos](#tipos-paramétricos)
+    - [Tipos recursivos](#tipos-recursivos)
+    - [Tipos predefinidos](#tipos-predefinidos-1)
 
 # Características
 
@@ -218,6 +223,8 @@ como se observa en el código, `where` permite definir una única vez la operaci
 
 Además, nos permite definir variables y hacerlas depender de otras definidas anteriormente.
 
+- Nota : la cláusula `otherwise` significa "en cualquier otro caso". Esto se usa cuando no se cumple ninguna de las condiciones anteriores (es como el else)
+
 ## Operadores y funciones
 
 - `+ - *` $\rightarrow$ aplica la operación aritmética correspondiente
@@ -259,3 +266,83 @@ En POO los objetos llevan consigo los métodos, mientras que en Haskell es el si
 El programador puede definir nuevas clases y declarar tipos como pertenecientes a esas clases
 
 # Sistemas de tipado
+
+Haskell tiene un sistema de tipado **estricto** y **seguro** (todo valor pertenece a un tipo de datos, toda función pertenece a un tipo de datos...) Los errores se detectan en tiempo de compilación.
+
+Haskell tiene <u>inferencia de tipos</u>, es decir, no es necesario (pero si conveniente) declarar el tipo de ningún elemento, pues el compilador puede averiguarlo
+
+## Tipado algebraico
+
+Haskell usa un sistema de tipado **algebraico**. Esto significa que todo valor proviene de un <u>constructor de datos</u> (que son funciones) : 
+- **No evaluables (Formas normales)** :  podemos pensar en ellas como etiquetas que identifican valores 
+- **Funciones sin parámetros** : valor constante
+- **Funciones con parámetros** : encapsula varios datos en parámetros (como un registro) (se puede usar ***concordancia de patrones*** para acceder a esos parámetros/campos del registro)
+
+Podemos definir varios constructores para un mismo tipo de dato.
+
+Los tipos de datos pueden ser **recursivos**.
+
+Para crear los tipos, se usa la siguiente sintaxis :
+
+```hs
+data Tipo = Constructor { parámetros } | Constructor2 { parámetros2 } | ...
+```
+
+Los paréntesis indica que no es obligatorio. Pongo un ejemplo : 
+
+```hs
+data Genero = Mujer | Hombre | Otro String
+Otro "Perro" -- valor de tipo "Otro"
+```
+
+Las funciones "Hombre" y "Mujer" son funciones sin argumento que construyen un valor de tipo "Genero"
+
+Para acceder a los datos usamos concordancia de patrones, como en este ejemplo :
+
+```hs
+data Clima = Soleado | Lloviendo
+
+queHacer :: Clima -> String
+queHacer dia = case dia of
+  | Soleado   -> "Ir al parque"
+  | Lloviendo -> "Quedarse en casa leyendo"
+```
+
+- Nota : la cláusula `case` permite utilizar concordancia de patrones en expresiones.
+
+## Tipos recursivos y paramétricos
+
+### Tipos paramétricos
+
+Esto permite que en vez de crear una lista con enteros, otra con Strings... (`ListInt`, `ListString`...) creamos una única lista que sea genérica, así : 
+
+```hs
+data List a = ...
+```
+
+Esto significa que "aquí va un tipo de dato, el que tú quieras" (es como el `List <T>` de Java)
+
+### Tipos recursivos
+
+Es un tipo que para definirse se llama <u>a sí mismo</u>. Aquí un ejemplo de una lista con tres elementos : 
+
+```hs
+Nodo 1 (Nodo 2 (Nodo 3))
+```
+
+### Tipos predefinidos
+
+Todos los tipos predefinidos en clase tienen el mismo esquema en su definición :
+
+```hs
+data () = () -- Tipo nulo
+data Bool = False | True -- Booleanos
+data Char = .. |'a'|'b'|'c' .. -- Caracteres
+data Int = .. |-1| 0| 1| 2 .. -- Enteros
+data Ordering = LT | EQ | GT -- Res. ordenación
+data [a] = [] | a : [a] -- Listas
+data (a,b) = (a,b) -- Tuplas
+data Maybe a = Nothing | Just a -- Nulificables
+data Either a b = Left a | Right b -- Alternativa
+type String = [Char] -- Ejemplo de tipo sinónimo
+```

@@ -19,6 +19,8 @@
   - [Concordancia de patrones (Pattern Matching)](#concordancia-de-patrones-pattern-matching)
   - [Subexpresiones](#subexpresiones)
   - [Operadores y funciones](#operadores-y-funciones)
+  - [Genericidad restringida](#genericidad-restringida)
+- [Sistemas de tipado](#sistemas-de-tipado)
 
 # Características
 
@@ -230,3 +232,30 @@ Además, nos permite definir variables y hacerlas depender de otras definidas an
 - `f $ g` $\rightarrow$ aplica g y lo que salga se le aplica a f
 - `pred, succ` $\rightarrow$ devuelve el elemento anterior/siguiente respectivamente (`succ 5` $\rightarrow$ `6`, `pred 6` $\rightarrow$ `5`)
 - `show` $\rightarrow$ traduce a String el valor (`show 5` $\rightarrow$ `"5"`, `show True` $\rightarrow$ `"True"`)
+
+## Genericidad restringida
+
+Además de tipos de datos, existen ***clases*** de tipos. Una clase es un conjunto de tipos para los que se garantiza que existe una serie de funciones
+
+```hs
+class Dibujable a where
+    dibujar :: a -> String
+```
+
+Aquí, cualquier tipo a que quieran ser <u>dibujables</u>, debe saber usar la función "dibujar"
+
+Si un tipo pertenece a una clase, se dice que es una ***instancia*** de la clase, y por lo tanto sabe usar las funciones definidas en la clase.
+
+```hs
+class (Eq a, Show a) => Num a where
+  (+), (-), (*) :: a -> a -> a
+  -- ...
+```
+
+lo que acabamos de crear aquí es una clase <u>Num</u> que "hereda" de <u>Eq</u> y <u>Show</u>. Por lo tanto, los datos que sean de tipo **Num**, deben ser también de tipo **Eq** y **Show**, por lo tanto podrán usar las funciones definidas en estas dos últimas además de las funciones definidas en la clase Num (suma, resta, multiplicación...)
+
+En POO los objetos llevan consigo los métodos, mientras que en Haskell es el sistema el que guarda una especie de tabla con funciones y selecciona la más adecuada.
+
+El programador puede definir nuevas clases y declarar tipos como pertenecientes a esas clases
+
+# Sistemas de tipado

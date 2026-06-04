@@ -26,6 +26,8 @@
     - [Tipos paramétricos](#tipos-paramétricos)
     - [Tipos recursivos](#tipos-recursivos)
     - [Tipos predefinidos](#tipos-predefinidos-1)
+- [Listas](#listas)
+  - [Funciones predefinidas para listas](#funciones-predefinidas-para-listas)
 
 # Características
 
@@ -346,3 +348,19 @@ data Maybe a = Nothing | Just a -- Nulificables
 data Either a b = Left a | Right b -- Alternativa
 type String = [Char] -- Ejemplo de tipo sinónimo
 ```
+
+# Listas
+
+Las listas son las estructuras de datos básicas en Haskell. Además de almacenar datos, son elementos fundamentales en el diseño de algoritmos.
+
+Una lista es un par `x : xs` donde `x` es el primer elemento de la lista y `xs` es la sublista con el resto de elementos.
+
+- Si la lista es de un solo elemento, podemos tener `x : z` ó `xs : []`
+
+En Haskell una lista puede estar definida por una expresión, y por el mecanismo de **evaluación diferida** (es decir, que hace únicamente lo estrictamente necesario) podemos definir/usar listas infinitas así : 
+
+```hs
+numerosNaturales = [..1] -- lista con numeros desde el 1 hasta el infinito
+```
+
+## Funciones predefinidas para listas

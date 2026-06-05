@@ -364,3 +364,96 @@ numerosNaturales = [..1] -- lista con numeros desde el 1 hasta el infinito
 ```
 
 ## Funciones predefinidas para listas
+
+- Nota : el símbolo `-` significa algo como "sé que aquí hay un elemento, pero no lo quiero para nada, deséchalo"
+- `Head` : accede al primer elemento de la lista
+```hs
+head :: [a] -> a
+head (x:_) = x
+head [1, 2, 3, 4, 5] = 1
+```
+
+- `Last` : accede al último elemento de la lista
+
+```hs
+last [a] -> a
+last [x] = x
+last (_:xs) = last xs
+last [1, 2, 3, 4, 5] = 5
+```
+
+- `Tail` : me devuelve la lista quitando el primer elemento
+
+```hs
+tail :: [a] -> a
+tail (_:xs) = xs
+tail [1, 2, 3, 4, 5] = [2, 3, 4, 5]
+```
+
+- `Init` : me devuelve la lista quitando el último elemento
+
+```hs
+init :: [a] -> a
+init [x] = []
+init (x:xs) = x : init xs
+init [1, 2, 3, 4, 5] = [1, 2, 3, 4]
+```
+
+- `Length` : devuelve la longitud de la lista
+
+```hs
+Length :: [a] -> Int
+length [] = 0
+length (_:xs) = 1 + length xs
+length [1, 2, 3, 4, 5] = 5
+```
+
+- `!!` : me devuelve el elemento i-ésimo
+
+```hs
+(!!) :: [a] -> Int -> a
+(x:_xs) !! 0 = x
+(_:xs) !! n = xs !! (n-1)
+[1, 2, 3, 4, 5] !! 2 = 3
+```
+
+- `(++)` : concatena listas
+
+```hs
+(++) :: [a] -> [a] -> [a]
+[] ++ ys = ys
+(x:xs) ++ ys = x:(xx ++ ys)
+[1, 2] ++ [3, 4, 5] = [1, 2, 3, 4, 5]
+```
+
+- `Take` : coge los n primeros elementos
+
+```hs
+take :: Int -> [a] -> [a]
+take n _ | n <= 0 = []
+take _ [] = []
+take n (x:xs) = x : take (n-1) xs
+take 3 [1, 2, 3, 4, 5] = [1, 2, 3]
+```
+
+Análogamente, la función `drop` elimina los n primeros elementos
+
+- `TakeWhile` : coge TODOS los elementos hasta que se cumpla la condición
+
+```hs
+takeWhile :: (a -> Bool) -> [a] -> [a]
+takeWhile p [] = []
+takeWhile p (x:xs)
+  | p x = x : takeWhile p xs
+  | otherwise = []
+takeWhile (< 4) [1,2,3,4,5] = [1, 2, 3]
+```
+
+Análogamente, la función `dropWhile` elimina todos los elementos hasta donde se cumple la condición
+
+- `reverse` : invierte una lista
+
+```hs
+reverse :: [a] -> [a]
+reverse [1, 2, 3, 4, 5] = [5, 4, 3, 2, 1]
+```

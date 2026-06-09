@@ -247,7 +247,7 @@ Además, nos permite definir variables y hacerlas depender de otras definidas an
 - `&& || not` $\rightarrow$ aplican la operación de AND, OR, NOT booleano respectivamente
 - `== /=` $\rightarrow$ es como el `== !=` de otros lenguajes (igual/distinto)
 - `< <= > >=` $\rightarrow$ devuelve True si es menor, menor o igual, mayor, mayor o igual respectivamente.
-- `f . g` $\rightarrow$ aplica la composición de funciones ($f(g(x))$)
+- `f . g` $\rightarrow$ aplica la composición de funciones ( $f(g(x))$ )
 - `f $ g` $\rightarrow$ aplica g y lo que salga se le aplica a f
 - `pred, succ` $\rightarrow$ devuelve el elemento anterior/siguiente respectivamente (`succ 5` $\rightarrow$ `6`, `pred 6` $\rightarrow$ `5`)
 - `show` $\rightarrow$ traduce a String el valor (`show 5` $\rightarrow$ `"5"`, `show True` $\rightarrow$ `"True"`)

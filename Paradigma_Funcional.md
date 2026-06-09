@@ -370,7 +370,7 @@ Una lista es un par `x : xs` donde `x` es el primer elemento de la lista y `xs` 
 En Haskell una lista puede estar definida por una expresión, y por el mecanismo de **evaluación diferida** (es decir, que hace únicamente lo estrictamente necesario) podemos definir/usar listas infinitas así : 
 
 ```hs
-numerosNaturales = [..1] -- lista con numeros desde el 1 hasta el infinito
+numerosNaturales = [1..] -- lista con numeros desde el 1 hasta el infinito
 ```
 
 ## Funciones predefinidas para listas

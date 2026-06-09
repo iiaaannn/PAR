@@ -588,7 +588,7 @@ Esto crea una lista formada por elementos obtenidos de evaluar la **expresión**
 
 Con esto podemos hacer cosas como estas : 
 
-$$\{5x ~ |  ~ x \in \{1,2,3,4,5,6,7\} \}$$
+$$\{5x \mid x \in \{1,2,3,4,5,6,7\} \}$$
 
 que en Haskell sería : 
 

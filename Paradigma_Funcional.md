@@ -30,6 +30,12 @@
   - [Funciones predefinidas para listas](#funciones-predefinidas-para-listas)
   - [Funciones anónimas](#funciones-anónimas)
   - [Listas enumeradas (rangos)](#listas-enumeradas-rangos)
+- [MAP](#map)
+- [FILTER](#filter)
+- [FOLDER](#folder)
+- [ZIP](#zip)
+  - [ZipWith](#zipwith)
+- [Compresión de listas](#compresión-de-listas)
 
 # Características
 
@@ -508,3 +514,92 @@ Todo tipo de datos que pertenezca a la clase `Enum`, tiene definidas las funcion
 [1..] -> [1,2,3,4...] (lista infinita)
 ```
 
+# MAP
+
+Aplica una misma operación (unario) que transforma una lista de elementos de tipo a en otra de elementos de tipo b
+
+```hs
+map :: (a -> b) -> [a] -> [b]
+map (+1) [1, 2, 3, 4, 5] = [2, 3, 4, 5, 6]
+```
+
+# FILTER
+
+Recibe un predicado y una lista de valores. El resultado es una lista con los elementos de la primera lista que cumplan ese predicado (el resto los descarta)
+
+```hs
+filter :: (a -> Bool) -> [a] -> [a]
+filter (< 3) [1, 2, 3, 4, 5] = [1, 2]
+```
+
+# FOLDER
+
+A partir de un valor inicial, y una operación, se va aplicando la operación al valor inicial con el primer elemento de la lista, el resultado con el segundo, ...
+
+- **Versión izquierada** (`foldl`)
+
+```hs
+foldl :: (b -> a -> b) -> b -> [a] -> b
+foldl (-) 0 [1, 2, 3, 4, 5] = -15 -- ((((0 - 1) - 2) - 3) - 4) - 5 = -15
+```
+
+- **Versión derecha** (`foldr`)
+
+```hs
+foldr :: (a -> b -> b) -> b -> [a] -> b
+foldr (-) 0 [1, 2, 3, 4, 5] = 3 -- 1 - (2 - (3 - (4 - (5 -0)))) = 3
+```
+
+# ZIP
+
+Toma el primer elemento de una lista y el primero de la otra y los junta en una tupla. Luego coge los segundos elementos y los junta en otra tupla...
+
+```hs
+zip :: [a] -> [b] -> [(a,b)]
+zip [1, 2, 3] ['a', 'b', 'c'] = [(1,'a'), (2,'b'), (3,'c')]
+```
+
+Y si las listas no son de igual longitud : 
+
+```hs
+zip [1, 2, 3] ['a', 'b'] = [(1,'a'), (2,'b')] -- Haskell se detiene cuando acaba la lista más corta
+```
+
+Análogamente `unzip` toma una lista de tuplas y las separa en dos listas diferentes
+
+Y además, podemos combinar tres elementos en una tupla con `zip3`
+
+## ZipWith
+
+`ZipWith` funciona de forma parecida a Zip, pero en vez de crear una lista de tuplas, crea una lista de elementos que son el resultado de aplicar una operación (la que nosotros le pongamos)
+
+```hs
+zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
+zipWith (+) [1, 2, 3] [4, 5, 6] = [5, 7, 9] -- [1 + 4, 2 + 5, 3 + 6]
+```
+
+# Compresión de listas
+
+```hs
+[expr | {var <- lista, condición}]
+```
+
+Esto crea una lista formada por elementos obtenidos de evaluar la **expresión** (expr). La expresión se evalua para todos los elementos de los **generadores** (es decir, todos los elementos de la **lista**) salvo los filtrados por la **condición**.
+
+Con esto podemos hacer cosas como estas : 
+
+$\{5x ~ |  ~ x \in \{1,2,3,4,5,6,7\} \}$
+
+que en Haskell sería : 
+
+```hs
+[5 * x | x <- [1..7]] = [5,10,15,20,25,30,35]
+```
+
+Y también podemos añadir restricciones : 
+
+$\{5x ~ | ~ x \in \{1,2,3,4,5,6,7\} \land x > 3\}$
+
+```hs
+[5 * x | x <- [1..7], x > 3] = [20,25,30,35]
+```

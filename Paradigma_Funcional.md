@@ -28,6 +28,8 @@
     - [Tipos predefinidos](#tipos-predefinidos-1)
 - [Listas](#listas)
   - [Funciones predefinidas para listas](#funciones-predefinidas-para-listas)
+  - [Funciones anónimas](#funciones-anónimas)
+  - [Listas enumeradas (rangos)](#listas-enumeradas-rangos)
 
 # Características
 
@@ -136,6 +138,8 @@ Al hacer `sumarDiez(2 + 3)` primero resuelve lo que hay dentro del paréntesis `
 Para el mismo ejemplo de antes, lo que hace el ordenador es llamar a la función directamente : `sumarDiez (2 + 3) = (2 + 3) + 10`, y ahora que tiene la expresión completa, la evalúa (lo suma todo) $\rightarrow$ `(2 + 3) + 10 = 5 + 10 = 15`
 
 Existen expresiones (***Formas normales***) que <u>NO</u> se evalúan. Estas son datos y funciones constructoras.
+
+En resumidas cuentas, la evaluación diferida hace que una expresión no se evalúe hasta que sea estrictamente necesario.
 
 ### Aplicación de funciones
 
@@ -457,3 +461,50 @@ Análogamente, la función `dropWhile` elimina todos los elementos hasta donde s
 reverse :: [a] -> [a]
 reverse [1, 2, 3, 4, 5] = [5, 4, 3, 2, 1]
 ```
+
+- `span` : devuelve una tupla de dos listas. La primera la lista está formada por elementos que cumplan el predicado impuesto, y la segunda por el resto resto de elementos.
+
+```hs
+span :: (a -> Bool) -> [a] -> ([a], [a])
+span (< 3) [1, 2, 3, 4, 5] = ([1, 2], [3, 4, 5])
+```
+
+## Funciones anónimas
+
+Son funciones de la forma : 
+
+```hs
+(\(param {,param}) -> expresion)
+```
+
+y de forma más simplificada : 
+
+
+```hs
+\parámetros -> expresión
+```
+
+Si por ejemplo quisiéramos hacer una función que sume 1 a un número dado, lo haríamos así : 
+
+```hs
+sumar1 :: Int -> Int
+sumar1 x = x + 1
+```
+
+Y su forma anónima sería : 
+
+```hs
+\x -> x + 1
+```
+
+## Listas enumeradas (rangos)
+
+Todo tipo de datos que pertenezca a la clase `Enum`, tiene definidas las funciones `enumFrom`, ... Para generar rangos de valores. Existe una sintaxis especial que nos permite hacer esto : 
+
+```
+[1..10] -> [1,2,3,4,5,6,7,8,9,10]
+['a'..'z'] -> "abcdefghijklmnopqrstuvwxyz"
+[1,3..10] -> [1,3,5,7,9]
+[1..] -> [1,2,3,4...] (lista infinita)
+```
+

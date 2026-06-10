@@ -397,7 +397,7 @@ numerosNaturales = [1..] -- lista con numeros desde el 1 hasta el infinito
 
 ## Funciones predefinidas para listas
 
-- Nota : el símbolo `-` significa algo como "sé que aquí hay un elemento, pero no lo quiero para nada, deséchalo"
+- Nota : el símbolo `_` significa algo como "sé que aquí hay un elemento, pero no lo quiero para nada, deséchalo"
 - Nota : el símbolo `:` introduce el elemento que le pongamos en la primera posición de la lista. Por ejemplo :
 ```hs
 5 : [1, 2, 3] = [5, 1, 2, 3]

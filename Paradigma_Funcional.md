@@ -128,6 +128,20 @@ triplicar x = x + x + x
 
 cuando haskell ve `triplicar 2`, lo que hace no es evaluar esa expresión, sino sustiturilo por su definición (`2 + 2 + 2`), por lo tanto quedaría así : `10 + 2 + 2 + 2`
 
+- **Nota** : las ***guardas*** en haskell son una forma elegante de escribir los bloques de código `if-then-else` de lenguajes imperativos : 
+
+```hs
+clasificarNota :: Double -> String
+clasificarNota nota
+    | nota < 5.0  = "Suspenso"
+    | nota < 7.0  = "Aprobado"
+    | nota < 9.0  = "Notable"
+    | nota < 10.0 = "Sobresaliente"
+    | otherwise   = "Matrícula de Honor o nota inválida"
+```
+
+Las guardas son las barritas `|`
+
 Existen dos tipos de formas de evaluar una función : 
 
 ### Evaluación directa
@@ -276,6 +290,14 @@ lo que acabamos de crear aquí es una clase <u>Num</u> que "hereda" de <u>Eq</u>
 En POO los objetos llevan consigo los métodos, mientras que en Haskell es el sistema el que guarda una especie de tabla con funciones y selecciona la más adecuada.
 
 El programador puede definir nuevas clases y declarar tipos como pertenecientes a esas clases
+
+- Nota : el operador `=>` significa "Siempre y cuando...". Para entenderlo mejor vamos a ver un ejemplo :
+
+```hs
+funcion :: (ClaseDeTipos a) => a -> a
+```
+
+esto se leería : "La función recibe un elemento de tipo `a` y devuelve un elemento de tipo `a`, siempre y cuando el tipo `a` pertenezca a la `ClaseDeTipos`"
 
 # Sistemas de tipado
 
